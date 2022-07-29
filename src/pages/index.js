@@ -192,9 +192,10 @@ export default function Home() {
               color='primary'
               sx={{
                 width: '100%',
+                height: '40px',
                 display: 'flex',
                 flexDirection: 'row',
-                alignItems: 'flex-start',
+                alignItems: 'flex-center',
                 padding: '0px',
               }}
             >
