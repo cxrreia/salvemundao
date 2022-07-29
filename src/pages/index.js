@@ -4,6 +4,6 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div>salve salve mundão</div>
+    <div>salve mundão</div>
   )
 }
