@@ -4,5 +4,4 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return <div>hããã</div>
-  return <div>altera ção inválida</div>
 }
