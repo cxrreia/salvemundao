@@ -48,7 +48,13 @@ const rows = [
 
 export default function List() {
   return (
-    <div>
+    <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '10p x',
+      }}
+    >
       <TableComponent data={rows} />
     </div>
   )

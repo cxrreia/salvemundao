@@ -54,7 +54,12 @@ export default function TableComponent({ data = [] }) {
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        maxWidth: '1200px',
+      }}
+    >
       <Table sx={{ minWidth: 700 }} aria-label='customized table'>
         <TableHead>
           <TableRow>
