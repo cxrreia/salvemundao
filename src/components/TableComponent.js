@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { Pagination } from '@mui/material'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,10 +31,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function TableComponent({ data = [] }) {
   const [dataTable, setDataTable] = useState([])
+  const [page, setPage] = useState(1)
+  const [count, setCount] = useState(0)
+  const [perPage, setPerPage] = useState(10)
 
   useEffect(() => {
     setDataTable(data)
+    setCount(Math.ceil(data.length / perPage))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
+
+  useEffect(() => {
+    setCount(Math.ceil(dataTable.length / perPage))
+  }, [dataTable, perPage])
+
+  const paginate = (array, perPage, page) => {
+    return array.slice((page - 1) * perPage, page * perPage)
+  }
+
+  const handleChange = (event, value) => {
+    setPage(value)
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -48,8 +66,8 @@ export default function TableComponent({ data = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {dataTable.map((row) => (
-            <StyledTableRow key={row.name}>
+          {paginate(dataTable, perPage, page).map((row, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component='th' scope='row'>
                 {row.name}
               </StyledTableCell>
@@ -61,6 +79,8 @@ export default function TableComponent({ data = [] }) {
           ))}
         </TableBody>
       </Table>
+
+      <Pagination count={count} page={page} onChange={handleChange} />
     </TableContainer>
   )
 }
